@@ -3,13 +3,14 @@
   flex: 0.2;
   background-color: #50374f;
   color: rgb(255, 255, 255);
-  min-width: 12rem;
+  min-width: 10rem;
+
   padding-left: 0rem;
   padding-right: 0rem;
 }
 
 .sidebar > hr {
-  border: 1px solid #282828;
+  border: 1px solid #909090;
   width: 90%;
   margin: 1rem auto;
 }

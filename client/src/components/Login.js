@@ -3,7 +3,7 @@ import { loginUrl } from "../utils/spotify";
 
 import "./Login.css";
 
-const logo = require("../assets/images/spotifylogo.PNG");
+const logo = require("../assets/images/SP.jpg");
 
 function Login() {
   return (

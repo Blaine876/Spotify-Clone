@@ -7,9 +7,13 @@ import { GlobalContext } from "./context/DataContext";
 const spotify = new SpotifyWebApi();
 
 function App() {
-  const { user, token, loginUser, setToken, setPlaylists } = useContext(
-    GlobalContext
-  );
+  const {
+    token,
+    loginUser,
+    setToken,
+    setPlaylists,
+    setDiscoverWeekly,
+  } = useContext(GlobalContext);
 
   useEffect(() => {
     const hash = getToken();
@@ -17,20 +21,22 @@ function App() {
     const _token = hash.access_token;
 
     if (_token) {
-      console.log(_token);
       setToken(_token);
 
       spotify.setAccessToken(_token);
       spotify.getMe().then((user) => {
         loginUser(user);
-        spotify.getUserPlaylists().then((playlists) => {
-          setPlaylists(playlists);
-        });
       });
     }
-  }, []);
 
-  console.log(token);
+    spotify.getUserPlaylists().then((playlists) => {
+      setPlaylists(playlists);
+    });
+
+    spotify.getPlaylist("37i9dQZEVXcKzm6iVxdBLT").then((response) => {
+      setDiscoverWeekly(response);
+    });
+  }, []);
   return (
     <div className="app">
       {token ? <MusicPlayer spotify={spotify} /> : <Login />}

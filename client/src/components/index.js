@@ -8,6 +8,8 @@ import Dashboard from "./Dashboard";
 import Sidebar from "./Sidebar";
 import Footer from "./Footer";
 import SidebarOption from "./SidebarOption";
+import Header from "./Header";
+import SongRow from "./SongRow";
 
 export {
   Home,
@@ -20,4 +22,6 @@ export {
   Sidebar,
   Footer,
   SidebarOption,
+  Header,
+  SongRow,
 };

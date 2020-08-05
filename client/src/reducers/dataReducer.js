@@ -20,6 +20,12 @@ export default (state, action) => {
         playlists: action.payload,
       };
 
+    case "SET_DISCOVER_WEEKLY":
+      return {
+        ...state,
+        discover_weekly: action.payload,
+      };
+
     default:
       return state;
   }

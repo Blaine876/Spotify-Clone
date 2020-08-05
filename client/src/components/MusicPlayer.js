@@ -7,7 +7,7 @@ function MusicPlayer({ spotify }) {
     <div className="musicplayer">
       <div className="musicplayer__body">
         <Sidebar />
-        <Dashboard />
+        <Dashboard spotify={spotify} />
         <Footer />
       </div>
     </div>

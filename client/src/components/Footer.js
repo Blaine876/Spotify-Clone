@@ -23,11 +23,11 @@ function Footer() {
       </div>
 
       <div className="footer__center">
-        <ShuffleIcon className="footer__green" />
+        <ShuffleIcon className="footer__red" />
         <SkipNextIcon className="footer__icon" />
         <PlayCircleOutlineIcon fontSize="large" className="footer__icon" />
         <SkipNextIcon className="footer__icon" />
-        <RepeatIcon className="footer__green" />
+        <RepeatIcon className="footer__red" />
       </div>
 
       <div className="footer__right">
@@ -39,7 +39,7 @@ function Footer() {
             <VolumeDownIcon />
           </Grid>
           <Grid item xs>
-            <Slider aria-labelledby="continuous-slice" />
+            <Slider color="secondary" aria-labelledby="continuous-slice" />
           </Grid>
         </Grid>
       </div>

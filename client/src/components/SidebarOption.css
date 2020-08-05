@@ -1,7 +1,7 @@
 .sidebarOption {
   display: flex;
   align-items: center;
-  color: rgb(83, 83, 83);
+  color: #b3b3b3;
   height: 40px;
   cursor: pointer;
   transition: 0.2s color ease-in;
@@ -10,7 +10,7 @@
 }
 
 .sidebarOption:hover {
-  color: white;
+  color: #eb1d33;
 }
 
 .sidebarOption__icon {
@@ -22,4 +22,8 @@
   margin-top: 0.5rem;
   margin-left: 2rem;
   font-size: 0.9rem;
+}
+
+.sidebarOption > h4 {
+  color: #dadada;
 }
