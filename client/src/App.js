@@ -1,14 +1,15 @@
 import React, { useEffect, useContext } from "react";
-import { Home, Login } from "./components";
+import { Home, Login, MusicPlayer } from "./components";
 import { getToken } from "./utils/spotify";
 import SpotifyWebApi from "spotify-web-api-js";
-import MusicPlayer from "./components";
 import { GlobalContext } from "./context/DataContext";
 
 const spotify = new SpotifyWebApi();
 
 function App() {
-  const { user, token, loginUser, setToken } = useContext(GlobalContext);
+  const { user, token, loginUser, setToken, setPlaylists } = useContext(
+    GlobalContext
+  );
 
   useEffect(() => {
     const hash = getToken();
@@ -22,13 +23,18 @@ function App() {
       spotify.setAccessToken(_token);
       spotify.getMe().then((user) => {
         loginUser(user);
+        spotify.getUserPlaylists().then((playlists) => {
+          setPlaylists(playlists);
+        });
       });
     }
   }, []);
 
   console.log(token);
   return (
-    <div className="app">{token ? <h1>Hi am Logged In</h1> : <Login />}</div>
+    <div className="app">
+      {token ? <MusicPlayer spotify={spotify} /> : <Login />}
+    </div>
   );
 }
 

@@ -3,5 +3,21 @@ import Library from "./Library";
 import SearchBar from "./SearchBar";
 import Favorites from "./Favorites";
 import Login from "./Login";
+import MusicPlayer from "./MusicPlayer";
+import Dashboard from "./Dashboard";
+import Sidebar from "./Sidebar";
+import Footer from "./Footer";
+import SidebarOption from "./SidebarOption";
 
-export { Home, Library, SearchBar, Favorites, Login };
+export {
+  Home,
+  Library,
+  SearchBar,
+  Favorites,
+  Login,
+  MusicPlayer,
+  Dashboard,
+  Sidebar,
+  Footer,
+  SidebarOption,
+};

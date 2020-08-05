@@ -1,9 +1,15 @@
 import React from "react";
+import "./MusicPlayer.css";
+import { Dashboard, Sidebar, Footer } from "../components";
 
-function MusicPlayer() {
+function MusicPlayer({ spotify }) {
   return (
-    <div>
-      <h1>Music Player</h1>
+    <div className="musicplayer">
+      <div className="musicplayer__body">
+        <Sidebar />
+        <Dashboard />
+        <Footer />
+      </div>
     </div>
   );
 }

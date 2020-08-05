@@ -14,6 +14,12 @@ export default (state, action) => {
         token: action.payload,
       };
 
+    case "SET_PLAYLISTS":
+      return {
+        ...state,
+        playlists: action.payload,
+      };
+
     default:
       return state;
   }
