@@ -1,10 +1,10 @@
 import React, { useEffect, useContext } from "react";
-import { Home, Login, MusicPlayer } from "./components";
+import { Login, MusicPlayer } from "./components";
 import { getToken } from "./utils/spotify";
 import SpotifyWebApi from "spotify-web-api-js";
 import { GlobalContext } from "./context/DataContext";
 
-const spotify = new SpotifyWebApi();
+const s = new SpotifyWebApi();
 
 function App() {
   const {
@@ -13,6 +13,8 @@ function App() {
     setToken,
     setPlaylists,
     setDiscoverWeekly,
+    setTopArtists,
+    setSpotify,
   } = useContext(GlobalContext);
 
   useEffect(() => {
@@ -21,26 +23,38 @@ function App() {
     const _token = hash.access_token;
 
     if (_token) {
+      s.setAccessToken(_token);
       setToken(_token);
 
-      spotify.setAccessToken(_token);
-      spotify.getMe().then((user) => {
+      s.getPlaylist("37i9dQZEVXcKzm6iVxdBLT").then((response) => {
+        setDiscoverWeekly(response);
+      });
+
+      s.getMyTopArtists().then((response) => {
+        setTopArtists(response);
+      });
+
+      setSpotify(s);
+
+      s.getMe().then((user) => {
         loginUser(user);
       });
+
+      s.getUserPlaylists().then((playlists) => {
+        setPlaylists(playlists);
+      });
     }
-
-    spotify.getUserPlaylists().then((playlists) => {
-      setPlaylists(playlists);
-    });
-
-    spotify.getPlaylist("37i9dQZEVXcKzm6iVxdBLT").then((response) => {
-      setDiscoverWeekly(response);
-    });
-  }, []);
+  }, [
+    token,
+    loginUser,
+    setToken,
+    setPlaylists,
+    setTopArtists,
+    setSpotify,
+    setDiscoverWeekly,
+  ]);
   return (
-    <div className="app">
-      {token ? <MusicPlayer spotify={spotify} /> : <Login />}
-    </div>
+    <div className="app">{token ? <MusicPlayer spotify={s} /> : <Login />}</div>
   );
 }
 

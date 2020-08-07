@@ -1,6 +1,7 @@
 import React from "react";
-import "./MusicPlayer.css";
 import { Dashboard, Sidebar, Footer } from "../components";
+
+import "./MusicPlayer.css";
 
 function MusicPlayer({ spotify }) {
   return (
@@ -8,7 +9,7 @@ function MusicPlayer({ spotify }) {
       <div className="musicplayer__body">
         <Sidebar />
         <Dashboard spotify={spotify} />
-        <Footer />
+        <Footer spotify={spotify} />
       </div>
     </div>
   );

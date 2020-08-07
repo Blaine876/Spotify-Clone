@@ -4,22 +4,16 @@
   height: 100vh;
   color: white;
   overflow-y: overlay;
-  /* background: linear-gradient(
-    190deg,
-    rgba(139, 38, 149, 1) 10%,
-    rgba(33, 6, 43, 0.9752275910364145) 98%
-  ); */
 
-  background: #42275a; /* fallback for old browsers */
   background: -webkit-linear-gradient(
-    to top,
-    #734b6d,
-    #42275a
+    to left,
+    #dc2430,
+    #7b4397
   ); /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(
-    to top,
-    #734b6d,
-    #42275a
+    to left,
+    #dc2430,
+    #7b4397
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 

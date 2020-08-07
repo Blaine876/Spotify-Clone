@@ -7,14 +7,49 @@ import { GlobalContext } from "../context/DataContext";
 import "./Dashboard.css";
 
 function Dashboard({ spotify }) {
-  const { discover_weekly } = useContext(GlobalContext);
+  const { discover_weekly, setTrack, setPlaying } = useContext(GlobalContext);
 
-  console.log(discover_weekly);
+  const playSong = (id) => {
+    spotify
+      .play({
+        uris: [`spotify:track:${id}`],
+      })
+      .then((res) => {
+        console.log("Res:", res);
+        spotify.getMyCurrentPlayingTrack().then((r) => {
+          console.log("R: ", r);
+          setTrack(r.item);
+          setPlaying(true);
+        });
+      })
+      .catch((err) => {
+        console.log("Error playing song: ", err);
+        setPlaying(false);
+      });
+  };
+
+  const playPlaylist = (id) => {
+    spotify
+      .play({
+        uris: [`spotify:playlist:37i9dQZEVXcKzm6iVxdBLT`],
+      })
+      .then((res) => {
+        console.log("Res:", res);
+        spotify.getMyCurrentPlayingTrack().then((r) => {
+          console.log("R: ", r);
+          setTrack(r.item);
+          setPlaying(true);
+        });
+      })
+      .catch((err) => {
+        console.log("Error playing playlist: ", err);
+        setPlaying(false);
+      });
+  };
 
   return (
     <div className="dashboard">
       <Header spotify={spotify} />
-
       <div className="dashboard__info">
         <img src={discover_weekly?.images[0].url} alt="" />
         <div className="dashboard__infoText">
@@ -26,13 +61,20 @@ function Dashboard({ spotify }) {
 
       <div className="dashboard__songs">
         <div className="dashboard__icons">
-          <PlayCircleFilledIcon className="dashboard__shuffle" />
+          <PlayCircleFilledIcon
+            onClick={playPlaylist}
+            className="dashboard__shuffle"
+          />
           <FavoriteIcon fontSize="large" />
           <MoreHorizIcon />
         </div>
 
         {discover_weekly?.tracks.items.map((item) => (
-          <SongRow track={item.track} />
+          <SongRow
+            key={item.track.id}
+            playTrack={playSong}
+            track={item.track}
+          />
         ))}
       </div>
     </div>
